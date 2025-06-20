@@ -48,7 +48,7 @@ session_start();
             <div class="main-header-right row">
                 <div class="main-header-left d-lg-none w-auto">
                     <div class="logo-wrapper">
-                        <a href="index.html">
+                        <a href="../admin/index.php">
                             <img class="blur-up lazyloaded d-block d-lg-none"
                                 src="assets/images/dashboard/multikart-logo-black.png" alt="">
                         </a>
@@ -152,7 +152,7 @@ session_start();
             <!-- Page Sidebar Start-->
             <div class="page-sidebar">
                 <div class="main-header-left d-none d-lg-block">
-                    <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded"
+                    <div class="logo-wrapper"><a href="../admin/index.php"><img class="blur-up lazyloaded"
                                 src="assets/images/dashboard/multikart-logo.png" alt=""></a></div>
                 </div>
                 <div class="sidebar custom-scrollbar">
@@ -160,7 +160,7 @@ session_start();
                             aria-hidden="true"></i></a>
                     <ul class="sidebar-menu">
                         <li>
-                            <a class="sidebar-header" href="index.html">
+                            <a class="sidebar-header" href="../admin/index.php">
                                 <i data-feather="home"></i>
                                 <span>Dashboard</span>
                             </a>

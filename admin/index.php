@@ -224,7 +224,7 @@
                             aria-hidden="true"></i></a>
                     <ul class="sidebar-menu">
                         <li>
-                            <a class="sidebar-header" href="index.html">
+                            <a class="sidebar-header" href="../admin/index.php">
                                 <i data-feather="home"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -247,28 +247,28 @@
 
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="category.php">
+                                            <a href="../admin/category.php">
                                                 <i class="fa fa-circle"></i>Category
                                             </a>
                                         </li>
 
                                         <li>
-                                            <a href="category-sub.php">
+                                            <a href="../admin/category-sub.php">
                                                 <i class="fa fa-circle"></i>Sub Category</a>
                                         </li>
 
                                         <li>
-                                            <a href="product-list.php">
+                                            <a href="../admin/product-list.php">
                                                 <i class="fa fa-circle"></i>Product List</a>
                                         </li>
 
                                         <li>
-                                            <a href="product-detail.php">
+                                            <a href="../admin/product-detail.php">
                                                 <i class="fa fa-circle"></i>Product Detail</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-product.php">
+                                            <a href="../admin/add-product.php">
                                                 <i class="fa fa-circle"></i>Add Product
                                             </a>
                                         </li>

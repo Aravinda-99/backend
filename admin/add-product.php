@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -602,74 +605,106 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12">
+                            <!-- Display Success/Error Messages -->
+                            <?php if (isset($_SESSION['success_message'])): ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <?php echo $_SESSION['success_message']; unset($_SESSION['success_message']); ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (isset($_SESSION['error_messages'])): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul class="mb-0">
+                                        <?php foreach ($_SESSION['error_messages'] as $error): ?>
+                                            <li><?php echo $error; ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                                <?php unset($_SESSION['error_messages']); ?>
+                            <?php endif; ?>
+                            
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row product-adding">
-                                        <div class="col-xl-5">
-                                            <div class="add-product">
-                                                <div class="row">
-                                                    <div class="col-xl-9 xl-50 col-sm-6 col-9">
-                                                        <img src="assets/images/pro3/1.jpg" alt=""
-                                                            class="img-fluid image_zoom_1 blur-up lazyloaded">
-                                                    </div>
-                                                    <div class="col-xl-3 xl-50 col-sm-6 col-3">
-                                                        <ul class="file-upload-product">
-                                                            <li>
-                                                                <div class="box-input-file"><input class="upload"
-                                                                        type="file"><i class="fa fa-plus"></i></div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="box-input-file"><input class="upload"
-                                                                        type="file"><i class="fa fa-plus"></i></div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="box-input-file"><input class="upload"
-                                                                        type="file"><i class="fa fa-plus"></i></div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="box-input-file"><input class="upload"
-                                                                        type="file"><i class="fa fa-plus"></i></div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="box-input-file"><input class="upload"
-                                                                        type="file"><i class="fa fa-plus"></i></div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="box-input-file"><input class="upload"
-                                                                        type="file"><i class="fa fa-plus"></i></div>
-                                                            </li>
-                                                        </ul>
+                                    <form class="needs-validation add-product-form" method="POST" action="process/add_product/process-add-product.php" enctype="multipart/form-data" novalidate>
+                                        <div class="row product-adding">
+                                            <div class="col-xl-5">
+                                                <div class="add-product">
+                                                    <div class="row">
+                                                        <div class="col-xl-9 xl-50 col-sm-6 col-9">
+                                                            <img src="assets/images/pro3/1.jpg" alt=""
+                                                                class="img-fluid image_zoom_1 blur-up lazyloaded">
+                                                        </div>
+                                                        <div class="col-xl-3 xl-50 col-sm-6 col-3">
+                                                            <ul class="file-upload-product">
+                                                                <li>
+                                                                    <div class="box-input-file">
+                                                                        <input class="upload" name="product_images[]" type="file" accept="image/*">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="box-input-file">
+                                                                        <input class="upload" name="product_images[]" type="file" accept="image/*">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="box-input-file">
+                                                                        <input class="upload" name="product_images[]" type="file" accept="image/*">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="box-input-file">
+                                                                        <input class="upload" name="product_images[]" type="file" accept="image/*">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="box-input-file">
+                                                                        <input class="upload" name="product_images[]" type="file" accept="image/*">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="box-input-file">
+                                                                        <input class="upload" name="product_images[]" type="file" accept="image/*">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-7">
-                                            <form class="needs-validation add-product-form" novalidate="">
+                                            <div class="col-xl-7">
                                                 <div class="form">
                                                     <div class="form-group mb-3 row">
-                                                        <label for="validationCustom01"
-                                                            class="col-xl-3 col-sm-4 mb-0">Title :</label>
+                                                        <label for="title" class="col-xl-3 col-sm-4 mb-0">Title :</label>
                                                         <div class="col-xl-8 col-sm-7">
-                                                            <input class="form-control" id="validationCustom01"
-                                                                type="text" required="">
+                                                            <input class="form-control" id="title" name="title" 
+                                                                type="text" required 
+                                                                value="<?php echo isset($_SESSION['form_data']['title']) ? htmlspecialchars($_SESSION['form_data']['title']) : ''; ?>">
                                                         </div>
                                                         <div class="valid-feedback">Looks good!</div>
                                                     </div>
                                                     <div class="form-group mb-3 row">
-                                                        <label for="validationCustom02"
-                                                            class="col-xl-3 col-sm-4 mb-0">Price :</label>
+                                                        <label for="price" class="col-xl-3 col-sm-4 mb-0">Price :</label>
                                                         <div class="col-xl-8 col-sm-7">
-                                                            <input class="form-control" id="validationCustom02"
-                                                                type="text" required="">
+                                                            <input class="form-control" id="price" name="price" 
+                                                                type="number" step="0.01" min="0" required 
+                                                                value="<?php echo isset($_SESSION['form_data']['price']) ? htmlspecialchars($_SESSION['form_data']['price']) : ''; ?>">
                                                         </div>
                                                         <div class="valid-feedback">Looks good!</div>
                                                     </div>
                                                     <div class="form-group mb-3 row">
-                                                        <label for="validationCustomUsername"
-                                                            class="col-xl-3 col-sm-4 mb-0">Product Code :</label>
+                                                        <label for="product_code" class="col-xl-3 col-sm-4 mb-0">Product Code :</label>
                                                         <div class="col-xl-8 col-sm-7">
-                                                            <input class="form-control" id="validationCustomUsername"
-                                                                type="text" required="">
+                                                            <input class="form-control" id="product_code" name="product_code" 
+                                                                type="text" required 
+                                                                value="<?php echo isset($_SESSION['form_data']['product_code']) ? htmlspecialchars($_SESSION['form_data']['product_code']) : ''; ?>">
                                                         </div>
                                                         <div class="invalid-feedback offset-sm-4 offset-xl-3">Please
                                                             choose Valid Code.</div>
@@ -677,41 +712,41 @@
                                                 </div>
                                                 <div class="form">
                                                     <div class="form-group row">
-                                                        <label for="exampleFormControlSelect1"
-                                                            class="col-xl-3 col-sm-4 mb-0">Select Size :</label>
+                                                        <label for="size" class="col-xl-3 col-sm-4 mb-0">Select Size :</label>
                                                         <div class="col-xl-8 col-sm-7">
-                                                            <select class="form-control digits"
-                                                                id="exampleFormControlSelect1">
-                                                                <option>Small</option>
-                                                                <option>Medium</option>
-                                                                <option>Large</option>
-                                                                <option>Extra Large</option>
+                                                            <select class="form-control digits" id="size" name="size" required>
+                                                                <option value="">Choose Size...</option>
+                                                                <option value="Small" <?php echo (isset($_SESSION['form_data']['size']) && $_SESSION['form_data']['size'] == 'Small') ? 'selected' : ''; ?>>Small</option>
+                                                                <option value="Medium" <?php echo (isset($_SESSION['form_data']['size']) && $_SESSION['form_data']['size'] == 'Medium') ? 'selected' : ''; ?>>Medium</option>
+                                                                <option value="Large" <?php echo (isset($_SESSION['form_data']['size']) && $_SESSION['form_data']['size'] == 'Large') ? 'selected' : ''; ?>>Large</option>
+                                                                <option value="Extra Large" <?php echo (isset($_SESSION['form_data']['size']) && $_SESSION['form_data']['size'] == 'Extra Large') ? 'selected' : ''; ?>>Extra Large</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-xl-3 col-sm-4 mb-0">Total Products :</label>
+                                                        <label for="total_products" class="col-xl-3 col-sm-4 mb-0">Total Products :</label>
                                                         <fieldset class="qty-box col-xl-9 col-xl-8 col-sm-7">
                                                             <div class="input-group">
-                                                                <input class="touchspin" type="text" value="1">
+                                                                <input class="touchspin form-control" id="total_products" name="total_products" 
+                                                                    type="number" min="1" required 
+                                                                    value="<?php echo isset($_SESSION['form_data']['total_products']) ? htmlspecialchars($_SESSION['form_data']['total_products']) : '1'; ?>">
                                                             </div>
                                                         </fieldset>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-xl-3 col-sm-4">Add Description :</label>
+                                                        <label for="description" class="col-xl-3 col-sm-4">Add Description :</label>
                                                         <div class="col-xl-8 col-sm-7 description-sm">
-                                                            <textarea id="editor1" name="editor1" cols="10"
-                                                                rows="4"></textarea>
+                                                            <textarea id="description" name="description" cols="10" rows="4" class="form-control"><?php echo isset($_SESSION['form_data']['description']) ? htmlspecialchars($_SESSION['form_data']['description']) : ''; ?></textarea>
                                                         </div>
                                                         <div class="offset-xl-3 offset-sm-4 mt-4">
-                                                            <button type="submit" class="btn btn-primary">Add</button>
-                                                            <button type="button" class="btn btn-light">Discard</button>
+                                                            <button type="submit" class="btn btn-primary">Add Product</button>
+                                                            <button type="reset" class="btn btn-light">Clear Form</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -779,6 +814,54 @@
 
     <!--script admin-->
     <script src="assets/js/admin-script.js"></script>
+    
+    <!-- Image Upload Preview Script -->
+    <script>
+    $(document).ready(function() {
+        // Handle file input change
+        $('.upload').on('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Update the main image preview with the first selected image
+                    const mainImg = $('.image_zoom_1');
+                    if (mainImg.length > 0) {
+                        mainImg.attr('src', e.target.result);
+                    }
+                };
+                reader.readAsDataURL(file);
+                
+                // Show selected file name
+                $(this).next('i').removeClass('fa-plus').addClass('fa-check').css('color', 'green');
+            }
+        });
+        
+        // Form validation
+        $('.add-product-form').on('submit', function(e) {
+            let hasImages = false;
+            $('.upload').each(function() {
+                if (this.files.length > 0) {
+                    hasImages = true;
+                    return false; // break loop
+                }
+            });
+            
+            if (!hasImages) {
+                e.preventDefault();
+                alert('Please select at least one product image.');
+                return false;
+            }
+        });
+    });
+    </script>
+    
+    <?php
+    // Clear form data from session after displaying
+    if (isset($_SESSION['form_data'])) {
+        unset($_SESSION['form_data']);
+    }
+    ?>
 </body>
 
 </html>
